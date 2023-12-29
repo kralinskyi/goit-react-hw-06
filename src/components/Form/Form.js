@@ -3,22 +3,24 @@ import { nanoid } from 'nanoid';
 
 class Form extends Component {
   state = {
-    contact: {
-      name: '',
-      id: nanoid(),
-    },
+    name: '',
   };
 
-  handleChangeInput = e => {
-    const { value } = e.currentTarget;
-    this.setState({ contact: { name: value } });
+  handleInput = e => {
+    this.setState({ name: e.target.value });
   };
 
-  handleSubmit = () => {
-    this.props.contact = {
-      name: this.state.name,
-      id: this.state.id,
-    };
+  resetForm = () => {
+    this.setState({ name: '' });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { name } = this.state;
+    const id = nanoid();
+
+    this.props.onSubmit({ id, name });
+    this.resetForm();
   };
 
   render() {
@@ -29,8 +31,9 @@ class Form extends Component {
           <input
             type="text"
             name="name"
+            value={this.state.name}
             required
-            onChange={this.handleChangeInput}
+            onChange={this.handleInput}
           />
         </label>
         <button type="submit">Add contact</button>
