@@ -1,8 +1,9 @@
 import React from 'react';
+import './Contacts.css';
 
 const Contacts = ({ contacts }) => {
   return (
-    <ul>
+    <ul className="contacts-list">
       {contacts.map(({ id, name, number }) => (
         <li key={id}>
           {name} :{' '}

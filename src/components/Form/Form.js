@@ -1,45 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { nanoid } from 'nanoid';
+import './Form.css';
 
-class Form extends Component {
-  state = {
-    name: '',
-  };
-
-  handleInput = e => {
-    this.setState({ name: e.target.value });
-  };
-
-  resetForm = () => {
-    this.setState({ name: '' });
-  };
-
-  handleSubmit = e => {
+const Form = ({ onSubmit }) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const { name } = this.state;
-    const id = nanoid();
 
-    this.props.onSubmit({ id, name });
-    this.resetForm();
+    const id = nanoid();
+    const name = e.currentTarget.elements.name.value;
+    const number = e.currentTarget.elements.number.value;
+
+    onSubmit({ id, name, number });
+    e.currentTarget.reset();
   };
 
-  render() {
-    return (
-      <form className="form" onSubmit={this.handleSubmit}>
-        contact
-        <label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            required
-            onChange={this.handleInput}
-          />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <label htmlFor="name">
+        <span className="label-span">Name</span>
+        <input type="text" name="name" required />
+      </label>
+      <label htmlFor="number">
+        <span className="label-span">Phone</span>
+        <input type="tel" name="number" required />
+      </label>
+      <button type="submit">Add contact</button>
+    </form>
+  );
+};
 
 export default Form;
