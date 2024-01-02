@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { nanoid } from 'nanoid';
 import './Form.css';
 
-const Form = ({ onSubmit }) => {
+const Form = ({ onFormSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -10,7 +12,7 @@ const Form = ({ onSubmit }) => {
     const name = e.currentTarget.elements.name.value;
     const number = e.currentTarget.elements.number.value;
 
-    onSubmit({ id, name, number });
+    onFormSubmit({ id, name, number });
     e.currentTarget.reset();
   };
 
@@ -27,6 +29,10 @@ const Form = ({ onSubmit }) => {
       <button type="submit">Add contact</button>
     </form>
   );
+};
+
+Form.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
 };
 
 export default Form;

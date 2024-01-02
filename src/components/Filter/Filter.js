@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Filter = ({ filter, onFilter }) => {
   return (
     <div>
-      <label htmlFor="filter">
+      <label>
         <input
           name="filter"
           type="text"
@@ -19,6 +19,6 @@ const Filter = ({ filter, onFilter }) => {
 export default Filter;
 
 Filter.propTypes = {
-  filter: PropTypes.string.isRequired, // рядок
-  onFilter: PropTypes.func.isRequired, // функція
+  filter: PropTypes.string.isRequired,
+  onFilter: PropTypes.func.isRequired,
 };

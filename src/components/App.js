@@ -71,7 +71,7 @@ class App extends Component {
     return (
       <div className="app">
         <Section title={'Phonebook'}>
-          <Form onSubmit={this.addContact} />
+          <Form onFormSubmit={this.addContact} />
         </Section>
 
         <Section title={'Contacts'}>
