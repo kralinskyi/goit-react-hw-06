@@ -16,11 +16,11 @@ const Form = ({ onSubmit }) => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <label htmlFor="name">
+      <label>
         <span className="label-span">Name</span>
         <input type="text" name="name" required />
       </label>
-      <label htmlFor="number">
+      <label>
         <span className="label-span">Phone</span>
         <input type="tel" name="number" required />
       </label>

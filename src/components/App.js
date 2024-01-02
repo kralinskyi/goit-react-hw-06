@@ -16,8 +16,6 @@ class App extends Component {
       { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = newContact => {
@@ -42,8 +40,34 @@ class App extends Component {
     Notify.success('New contact has been added to your book!');
   };
 
-  render() {
+  handleFilter = ({ target }) => {
+    const { value } = target;
+    this.setState({ filter: value });
+  };
+
+  filter = () => {
+    const { contacts, filter } = this.state;
+
+    // новий масив, який містить всі контакти, що містять рядок пошуку
+    const filteredContacts = contacts.filter(
+      ({ name, number }) =>
+        name.toLowerCase().includes(filter.toLowerCase()) ||
+        number.includes(filter)
+    );
+
+    // повернення нового масиву, який містить тільки ті контакти, які відповідають рядку пошуку
+    return filteredContacts;
+  };
+
+  deleteContact = id => {
     const { contacts } = this.state;
+
+    this.setState({
+      contacts: contacts.filter(item => item.id !== id),
+    });
+  };
+
+  render() {
     return (
       <div className="app">
         <Section title={'Phonebook'}>
@@ -52,8 +76,11 @@ class App extends Component {
 
         <Section title={'Contacts'}>
           <h2 className="filter-title">Find contact by name</h2>
-          <Filter />
-          <Contacts contacts={contacts} />
+          <Filter onFilter={this.handleFilter} filter={this.state.filter} />
+          <Contacts
+            contacts={this.filter()}
+            deleteContact={this.deleteContact}
+          />
         </Section>
       </div>
     );
