@@ -49,14 +49,11 @@ class App extends Component {
     const { contacts, filter } = this.state;
 
     // новий масив, який містить всі контакти, що містять рядок пошуку
-    const filteredContacts = contacts.filter(
+    return contacts.filter(
       ({ name, number }) =>
         name.toLowerCase().includes(filter.toLowerCase()) ||
         number.includes(filter)
     );
-
-    // повернення нового масиву, який містить тільки ті контакти, які відповідають рядку пошуку
-    return filteredContacts;
   };
 
   deleteContact = id => {
