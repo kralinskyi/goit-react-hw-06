@@ -1,0 +1,9 @@
+.contact {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 2px dotted #212121;
+  border-radius: 10px;
+  padding: 5px;
+}
