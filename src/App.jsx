@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Formik, Form, Field } from "formik";
 import "./App.css";
 import "modern-normalize";
 import ContactForm from "./components/ContactForm/ContactForm";
@@ -7,7 +6,7 @@ import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import initialContacts from "./components/initialContacts.json";
 
-STORAGE_KEY = "contacts";
+// const STORAGE_KEY = "contacts";
 
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
