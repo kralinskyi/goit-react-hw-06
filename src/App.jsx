@@ -1,6 +1,5 @@
 import "./App.css";
 import "modern-normalize";
-import initialContacts from "./components/initialContacts.json";
 
 function App() {
   return (
