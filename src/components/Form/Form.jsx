@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { name } from "../../redux/store";
+import { number } from "../../redux/store";
 import css from "./Form.module.css";
 
 export default function Form() {
-  const name = useSelector(({ filters: { name } }) => name);
-  const number = useSelector(({ filters: { number } }) => number);
+  //   const dispatch = useDispatch();
+  const { name, number } = useSelector(({ filters }) => filters);
 
   return (
     <form className={css.form}>
@@ -14,7 +16,7 @@ export default function Form() {
           name="name"
           value={name}
           required
-          //   onChange={}
+          //   onChange={() => dispatch(name("Kolja"))}
         />
       </label>
       <label>

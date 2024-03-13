@@ -11,6 +11,20 @@ const initialState = {
   },
 };
 
+export const name = (filter) => {
+  return {
+    type: "filters/name",
+    payload: filter,
+  };
+};
+
+export const number = (filter) => {
+  return {
+    type: "filters/number",
+    payload: filter,
+  };
+};
+
 const rootReducer = (state = initialState, action) => {
   return state;
 };
