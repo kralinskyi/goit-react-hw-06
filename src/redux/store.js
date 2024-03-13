@@ -1,5 +1,5 @@
-import { createStore } from "redux";
 import initialContacts from "../../initialContacts.json";
+import { createStore } from "redux";
 
 const initialState = {
   contacts: {
@@ -7,10 +7,11 @@ const initialState = {
   },
   filters: {
     name: "",
+    number: "",
   },
 };
 
-const rootReducer = (state, action) => {
+const rootReducer = (state = initialState, action) => {
   return state;
 };
 
