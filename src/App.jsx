@@ -2,11 +2,7 @@ import "./App.css";
 import "modern-normalize";
 
 function App() {
-  return (
-    <div className="container">
-      <h1>Phonebook</h1>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
