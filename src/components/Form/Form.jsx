@@ -1,23 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addContact, contactName, contactNumber } from "../../redux/store";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/store";
 import css from "./Form.module.css";
 
 export default function Form() {
   const dispatch = useDispatch();
-  const { name, number } = useSelector(({ filters }) => filters);
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
   const handleNameChange = (event) => {
-    dispatch(contactName(event.target.value));
+    setName(event.target.value);
   };
 
   const handleNumberChange = (event) => {
-    dispatch(contactNumber(event.target.value));
+    setNumber(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     dispatch(addContact(name, number));
+
+    setName("");
+    setNumber("");
   };
 
   return (
