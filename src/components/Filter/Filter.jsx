@@ -1,6 +1,18 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import css from "./Filter.module.css";
+import { setFilter } from "../../redux/store";
 
 export default function Filter() {
+  const [filter, setFilterValue] = useState("");
+  const dispatch = useDispatch();
+
+  const handleFilterChange = (event) => {
+    const { value } = event.target;
+    setFilterValue(value);
+    dispatch(setFilter(value));
+  };
+
   return (
     <div className={css.container}>
       <label>
@@ -8,9 +20,8 @@ export default function Filter() {
           name="filter"
           type="text"
           placeholder="find contact"
-          //   onChange={onFilter}
-          // value={filter}
-        ></input>
+          value={filter}
+          onChange={handleFilterChange}></input>
       </label>
     </div>
   );

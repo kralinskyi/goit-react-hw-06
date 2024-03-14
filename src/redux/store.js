@@ -1,5 +1,5 @@
-import initialContacts from "../../initialContacts.json";
 import { createStore } from "redux";
+import initialContacts from "../../initialContacts.json";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { nanoid } from "nanoid";
 
@@ -9,7 +9,6 @@ const initialState = {
   },
   filters: {
     name: "",
-    number: "",
   },
 };
 
@@ -18,8 +17,8 @@ export const addContact = (name, number) => {
     type: "contacts/addContact",
     payload: {
       id: nanoid(),
-      name: name,
-      number: number,
+      name,
+      number,
     },
   };
 };
@@ -28,6 +27,13 @@ export const deleteContact = (contactId) => {
   return {
     type: "contacts/deleteContact",
     payload: contactId,
+  };
+};
+
+export const setFilter = (filterValue) => {
+  return {
+    type: "filters/setFilter",
+    payload: filterValue,
   };
 };
 
@@ -48,6 +54,15 @@ const rootReducer = (state = initialState, action) => {
           items: state.contacts.items.filter(
             (contact) => contact.id !== action.payload
           ),
+        },
+      };
+
+    case "filters/setFilter":
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          name: action.payload,
         },
       };
 
