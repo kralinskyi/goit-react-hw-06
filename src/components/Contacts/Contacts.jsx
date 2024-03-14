@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import css from "./Contacts.module.css";
-import { deleteContact } from "../../redux/store";
+import { deleteContact } from "../../redux/contactsSlice";
 
 export default function Contacts() {
   const contacts = useSelector(({ contacts: { items } }) => items);
