@@ -1,14 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-import { name } from "../../redux/store";
-import { number } from "../../redux/store";
+import { addContact, contactName, contactNumber } from "../../redux/store";
 import css from "./Form.module.css";
 
 export default function Form() {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { name, number } = useSelector(({ filters }) => filters);
 
+  const handleNameChange = (event) => {
+    dispatch(contactName(event.target.value));
+  };
+
+  const handleNumberChange = (event) => {
+    dispatch(contactNumber(event.target.value));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch(addContact(name, number));
+  };
+
   return (
-    <form className={css.form}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <label>
         <span className={css.label_span}>Name</span>
         <input
@@ -16,7 +29,7 @@ export default function Form() {
           name="name"
           value={name}
           required
-          //   onChange={() => dispatch(name("Kolja"))}
+          onChange={handleNameChange}
         />
       </label>
       <label>
@@ -26,7 +39,7 @@ export default function Form() {
           name="number"
           value={number}
           required
-          //   onChange={}
+          onChange={handleNumberChange}
         />
       </label>
       <button type="submit">Add contact</button>
