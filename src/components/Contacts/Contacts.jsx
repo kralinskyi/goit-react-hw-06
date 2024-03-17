@@ -3,11 +3,11 @@ import css from "./Contacts.module.css";
 import { deleteContact } from "../../redux/contactsSlice";
 
 export default function Contacts() {
-  const contacts = useSelector(({ contacts: { items } }) => items);
+  const selectContacts = useSelector(({ contacts: { items } }) => items);
   const { name } = useSelector(({ filters }) => filters);
   const dispatch = useDispatch();
 
-  const filteredContacts = contacts.filter(
+  const filteredContacts = selectContacts.filter(
     (contact) =>
       contact.name.toLowerCase().includes(name.toLowerCase()) ||
       contact.number.toLowerCase().includes(name.toLowerCase())
