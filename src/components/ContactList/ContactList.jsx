@@ -14,8 +14,8 @@ export default function ContactList() {
 
   return (
     <ul className={css.contacts_list}>
-      {filteredContacts.map(({ id, name, number }) => (
-        <Contact key={id} id={id} name={name} number={number} />
+      {filteredContacts.map((contact) => (
+        <Contact key={contact.id} contact={contact} />
       ))}
     </ul>
   );
